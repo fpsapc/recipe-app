@@ -9,6 +9,7 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
+    @food.user_id = current_user.id
 
     if @food.save
       flash[:notice] = 'Food was successfully added.'
@@ -20,10 +21,11 @@ class FoodsController < ApplicationController
 
   def destroy
     @food = Food.find(params[:id])
-    @food.destroy
+    @food.destroy!
     flash[:notice] = 'Food was successfully deleted.'
     redirect_to foods_path
   end
+
   def show 
   end
 
