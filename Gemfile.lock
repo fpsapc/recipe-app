@@ -141,12 +141,15 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.3-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.15.3-x64-mingw-ucrt)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     parallel (1.23.0)
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
     pg (1.5.3)
+    pg (1.5.3-x64-mingw-ucrt)
     public_suffix (5.0.3)
     puma (5.6.6)
       nio4r (~> 2.0)
@@ -227,6 +230,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2023.3)
+      tzinfo (>= 1.0.0)
     unicode-display_width (2.4.2)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -249,6 +254,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  x64-mingw-ucrt
 
 DEPENDENCIES
   bootsnap
