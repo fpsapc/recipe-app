@@ -3,7 +3,7 @@
 <h1>Foods List</h1>
 
 <p>
-  <%= link_to "Add New Food", new_food_path %>
+<%= button_to "Add New Food", new_food_path, method: :get %>
 </p>
 
 <% if flash[:notice] %>
