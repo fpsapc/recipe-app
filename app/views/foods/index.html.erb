@@ -1,0 +1,42 @@
+<!-- app/views/foods/index.html.erb -->
+
+<h1>Foods List</h1>
+
+<p>
+  <%= link_to "Add New Food", new_food_path %>
+</p>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<% if @foods.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Food Name</th>
+        <th>Measurement Unit</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= food.measurement_unit %></td>
+          <td><%= number_to_currency(food.price) %></td>
+          <td><%= food.quantity %></td>
+          <td>
+            <%= link_to "Show", food_path(food) %>
+            <%= link_to "Edit", edit_food_path(food) %>
+            <%= link_to "Delete", food_path(food), method: :delete, data: { confirm: "Are you sure you want to delete this food?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No food available.</p>
+<% end %>
