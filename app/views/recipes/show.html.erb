@@ -20,7 +20,9 @@
 <% end %>
 <div>
 <%= button_to "generate shopping list", new_recipe_path, method: :get %>
-<%= button_to "Add New ingredients", new_recipe_path, method: :get %>
+<button>
+  <%= link_to "Add ingredient", new_recipe_recipe_food_path(@recipe) %> 
+</button>
 </div>
 
 <% if @foods.any? %>
