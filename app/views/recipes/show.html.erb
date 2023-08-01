@@ -36,14 +36,14 @@
     <tbody>
       <% @foods.each do |food| %>
         <tr>
-          <td><%= food.name %></td>
-          <td><%= "#{food.quantity} #{food.measurement_unit}s"  %></td>
-          <td><%= number_to_currency(food.quantity * food.price) %></td>
-          <td>
-          <%= button_to "Modify", food_path(food), method: :get, class: "btn"  %>
-          <%= button_to "Delete", food_path(food), method: :delete, class: "btn"  %>
-          </td>
-        </tr>
+        <td><%= food.food.name %></td>
+        <td><%= "#{food.quantity} #{food.food.measurement_unit}s"  %></td>
+        <td><%= number_to_currency(food.quantity * food.food.price) %></td>
+        <td>
+        <%= button_to "Modify", food_path(food), method: :get, class: "btn"  %>
+        <%= button_to "Delete", food_path(food), method: :delete, class: "btn"  %>
+        </td>
+      </tr>
       <% end %>
     </tbody>
   </table>
