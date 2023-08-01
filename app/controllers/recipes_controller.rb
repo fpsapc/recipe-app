@@ -3,6 +3,10 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  def public_recipes
+    @recipes = Recipe.where(public: true)
+  end
+
   def new
     @recipe = Recipe.new
   end

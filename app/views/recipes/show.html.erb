@@ -18,6 +18,10 @@
 <% if flash[:notice] %>
   <p class="notice"><%= flash[:notice] %></p>
 <% end %>
+<div>
+<%= button_to "generate shopping list", new_recipe_path, method: :get %>
+<%= button_to "Add New ingredients", new_recipe_path, method: :get %>
+</div>
 
 <% if @foods.any? %>
   <table>

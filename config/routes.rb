@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :users
   resources :foods
   resources :recipes
+  resources :recipe_food
+  get '/public_recipes' => 'recipes#public_recipes'
+
   # Defines the root path route ("/")
   # root "articles#index"
 end
