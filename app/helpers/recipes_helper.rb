@@ -9,6 +9,7 @@ module RecipesHelper
 
     time_string
   end
+
   def food_quantity(food)
     @user.recipes.joins(:foods).where(foods: { id: food.id }).sum('recipe_foods.quantity')
   end

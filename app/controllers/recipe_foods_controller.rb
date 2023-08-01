@@ -1,7 +1,6 @@
 class RecipeFoodsController < ApplicationController
-  def index
-  end
-  
+  def index; end
+
   def new
     @recipe_food = RecipeFood.new
   end
@@ -10,7 +9,7 @@ class RecipeFoodsController < ApplicationController
     @recipe_food = RecipeFood.new(recipe_food_params)
 
     if @recipe_food.save
-      redirect_to recipe_foods_path, notice: "Recipe Food was successfully created."
+      redirect_to recipe_foods_path, notice: 'Recipe Food was successfully created.'
     else
       render :new
     end
