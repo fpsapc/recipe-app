@@ -1,0 +1,64 @@
+<!-- app/views/recipes/show.html.erb -->
+
+<h1><%= @recipe.name %></h1>
+
+<p>
+  <% if @recipe.preparation_time.present? %>
+    <strong>Preparation Time:</strong> <%= format_time(@recipe.preparation_time) %><br>
+  <% end %>
+
+  <% if @recipe.cooking_time.present? %>
+    <strong>Cooking Time:</strong> <%= format_time(@recipe.cooking_time) %><br>
+  <% end %>
+
+  <strong>Description:</strong> <%= @recipe.description %><br>
+  <strong>Public:</strong> <%= @recipe.public? ? 'Yes' : 'No' %>
+</p>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+
+<% if @foods.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Food Name</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td><%= food.name %></td>
+          <td><%= "#{food.quantity} #{food.measurement_unit}s"  %></td>
+          <td><%= number_to_currency(food.quantity * food.price) %></td>
+          <td>
+          <%= button_to "Modify", food_path(food), method: :get, class: "btn"  %>
+          <%= button_to "Delete", food_path(food), method: :delete, class: "btn"  %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No food available.</p>
+<% end %>
+
+
+<%= link_to "Edit Recipe", edit_recipe_path(@recipe) %>
+
+<%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch) do |form| %>
+  <div>
+    <%= form.label :public %>
+    <%= form.check_box :public, { checked: @recipe.public } %>
+  </div>
+
+  <div>
+    <%= form.submit "Update Public" %>
+  </div>
+<% end %>
+
+<%= link_to "Back to All Recipes", recipes_path %>
