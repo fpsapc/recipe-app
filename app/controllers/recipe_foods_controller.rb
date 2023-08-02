@@ -15,6 +15,20 @@ class RecipeFoodsController < ApplicationController
     end
   end
 
+  def edit
+    @recipe_food = RecipeFood.find(params[:id])
+  end
+
+  def update
+    @recipe_food = RecipeFood.find(params[:id])
+    puts "I'm here!!!!!!!!!!!!"
+    if @recipe_food.update(recipe_food_params)
+      redirect_to recipe_path(@recipe_food.recipe), notice: 'Recipe Food was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def recipe_food_params
