@@ -1,0 +1,11 @@
+<!-- app/views/recipes/missing_food.html.erb -->
+<h1>Missing Food List</h1>
+
+<h2>Total Missing Food Items: <%= @missing_food.sum { |food| food.total_quantity } %></h2>
+<h2>Total Price of Missing Food: <%= @missing_food.sum { |food| food.total_price } %></h2>
+
+<ul>
+  <% @missing_food.each do |food| %>
+    <li><%= food.name %> (Quantity: <%= food.total_quantity %>, Price: <%= food.total_price %>)</li>
+  <% end %>
+</ul>
