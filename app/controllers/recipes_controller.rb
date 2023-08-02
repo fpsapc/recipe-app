@@ -72,6 +72,14 @@ class RecipesController < ApplicationController
     @missing_food = build_missing_food_list
   end
 
+  def update
+    if @recipe.update(recipe_params)
+      redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def build_missing_food_list
