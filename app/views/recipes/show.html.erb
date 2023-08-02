@@ -51,9 +51,6 @@
   <p>No food available.</p>
 <% end %>
 
-
-<%= link_to "Edit Recipe", edit_recipe_path(@recipe) %>
-
 <%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch) do |form| %>
   <div>
     <%= form.label :public %>
