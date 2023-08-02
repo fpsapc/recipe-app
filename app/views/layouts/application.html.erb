@@ -20,18 +20,17 @@
       <li><%= link_to 'Foods', foods_path %></li>
       <li><%= link_to 'Recipes', recipes_path %></li>
       <li><%= link_to 'Public Recipes', public_recipes_path %></li>
-      <li><%= link_to 'Missing Food', missing_food_path %></li>
       <li><%= link_to 'General food list', general_food_list_user_path(current_user) %></li>
+    <li id="sign-out">
+      <% if user_signed_in? %>
+          <%= button_to "Sign out", destroy_user_session_path, class: 'btn', :method => :delete %>
+      <% end %>
+    </li>
       
     </ul>
   </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div id="sign-out">
-      <% if user_signed_in? %>
-          <%= button_to "Sign out", destroy_user_session_path, class: 'btn', :method => :delete %>
-      <% end %>
-    </div>
     <%= yield %>
   </body>
 </html>

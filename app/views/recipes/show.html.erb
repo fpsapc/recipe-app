@@ -19,8 +19,8 @@
   <p class="notice"><%= flash[:notice] %></p>
 <% end %>
 <div>
-<%= button_to "generate shopping list", new_recipe_path, method: :get %>
-<%= render "shared/button" %>
+<%= button_to "generate shopping list", missing_food_path, method: :get %>
+<%= button_to "Add ingredient", new_recipe_food_path, method: :get %>
 </div>
 
 <% if @foods.any? %>
@@ -40,8 +40,8 @@
         <td><%= "#{food.quantity} #{food.food.measurement_unit}s"  %></td>
         <td><%= number_to_currency(food.quantity * food.food.price) %></td>
         <td>
-        <%= button_to "Modify", food_path(food), method: :get, class: "btn"  %>
-        <%= button_to "Delete", food_path(food), method: :delete, class: "btn"  %>
+          <%= link_to "Modify", edit_recipe_food_path(food), class: "btn" %>
+          <%= button_to "Delete", destroy_recipe_food_path(food), method: :delete, class: "btn" %>
         </td>
       </tr>
       <% end %>
@@ -50,9 +50,6 @@
 <% else %>
   <p>No food available.</p>
 <% end %>
-
-
-<%= link_to "Edit Recipe", edit_recipe_path(@recipe) %>
 
 <%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch) do |form| %>
   <div>
