@@ -29,7 +29,12 @@
 <% end %>
 <div>
 <%= button_to "generate shopping list", missing_food_path, method: :get %>
-<%= button_to "Add ingredient", new_recipe_food_path, method: :get %>
+<%= form_tag(new_recipe_food_path, method: :get) do %>
+  <%= hidden_field_tag :recipe_id, @recipe.id %>
+  <%= submit_tag "Add ingredient" %>
+<% end %>
+
+
 </div>
 
 <% if @foods.any? %>
