@@ -4,11 +4,11 @@ class RecipesController < ApplicationController
   before_action :authorize_user, only: %i[edit update destroy]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(user_id: current_user.id).includes(:user)
   end
 
   def public_recipes
-    @recipes = Recipe.where(public: true)
+    @recipes = Recipe.includes(:user, recipe_foods: %i[food]).where(public: true).order(created_at: :desc)
   end
 
   def new
