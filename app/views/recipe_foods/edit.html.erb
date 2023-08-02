@@ -11,14 +11,12 @@
   <div class="field">
     <%= form.label :food_name %>
     <%= form.text_field :food_name, value: @recipe_food.food.name, readonly: true %>
-    <%= form.hidden_field :food_id, value: @recipe_food.food_id %>
   </div>
 
   <%# Recipe association (read-only) %>
   <div class="field">
     <%= form.label :recipe_name %>
     <%= form.text_field :recipe_name, value: @recipe_food.recipe.name, readonly: true %>
-    <%= form.hidden_field :recipe_id, value: @recipe_food.recipe_id %>
   </div>
 
   <%# Submit button %>
