@@ -15,6 +15,15 @@
   <strong>Public:</strong> <%= @recipe.public? ? 'Yes' : 'No' %>
 </p>
 
+<!-- Toggle button for Public column -->
+<%= form_with(model: @recipe) do |form| %>
+  <label class="switch">
+    <%= form.label :public %>
+    <%= form.check_box :public, onchange: 'this.form.submit();' %>
+    <span class="slider round"></span>
+  </label>
+<% end %>
+
 <% if flash[:notice] %>
   <p class="notice"><%= flash[:notice] %></p>
 <% end %>
@@ -49,17 +58,6 @@
   </table>
 <% else %>
   <p>No food available.</p>
-<% end %>
-
-<%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch) do |form| %>
-  <div>
-    <%= form.label :public %>
-    <%= form.check_box :public, { checked: @recipe.public } %>
-  </div>
-
-  <div>
-    <%= form.submit "Update Public" %>
-  </div>
 <% end %>
 
 <%= link_to "Back to All Recipes", recipes_path %>
