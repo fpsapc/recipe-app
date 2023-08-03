@@ -1,25 +1,25 @@
-<h1>Create a New Recipe</h1>
+<h1 class="heading">Create a New Recipe</h1>
 
-<%= form_with(model: @recipe, url: recipes_path) do |form| %>
+<%= form_with(model: @recipe, class:"new_recipe_form", url: recipes_path) do |form| %>
   <div>
-    <%= form.label :name %>
+    <%= form.label :name %><br>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :preparation_time %>
+    <%= form.label :preparation_time %><br>
     <%= form.number_field :preparation_time, step: 1, min: 0 %>
     minutes
   </div>
 
   <div>
-    <%= form.label :cooking_time %>
+    <%= form.label :cooking_time %><br>
     <%= form.number_field :cooking_time, step: 1, min: 0 %>
     minutes
   </div>
 
   <div>
-    <%= form.label :description %>
+    <%= form.label :description %><br>
     <%= form.text_area :description %>
   </div>
 
@@ -28,7 +28,7 @@
     <%= form.check_box :public %>
   </div>
 
-  <div>
+  <div class="create_recipe_btn">
     <%= form.submit %>
   </div>
 <% end %>

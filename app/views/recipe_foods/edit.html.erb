@@ -1,26 +1,26 @@
-<h1>Edit Recipe Food</h1>
+<h1 class="heading">Edit Recipe Food</h1>
 
 <%= form_with(model: @recipe_food, url: update_recipe_food_path(@recipe_food), method: :patch) do |form| %>
   <%# Quantity field %>
   <div class="field">
-    <%= form.label :quantity %>
+    <%= form.label :quantity %><br>
     <%= form.text_field :quantity %>
   </div>
 
   <%# Food association (read-only) %>
   <div class="field">
-    <%= form.label :food_name %>
+    <%= form.label :food_name %><br>
     <%= form.text_field :food_name, value: @recipe_food.food.name, readonly: true %>
   </div>
 
   <%# Recipe association (read-only) %>
   <div class="field">
-    <%= form.label :recipe_name %>
+    <%= form.label :recipe_name %><br>
     <%= form.text_field :recipe_name, value: @recipe_food.recipe.name, readonly: true %>
   </div>
 
   <%# Submit button %>
-  <div class="actions">
+  <div class="actions update_recipe_food">
     <%= form.submit "Update Recipe Food" %>
   </div>
 <% end %>

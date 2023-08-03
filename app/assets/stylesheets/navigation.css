@@ -15,6 +15,7 @@ nav {
 .navlinks {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .navbar-logo {

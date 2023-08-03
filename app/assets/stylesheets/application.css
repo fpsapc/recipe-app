@@ -13,3 +13,252 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.notice {
+  font-size: 2rem;
+  color: rgb(2, 75, 2);
+  font-weight: bold;
+}
+
+.signout_btn {
+  background-color: #f00;
+  color: white;
+}
+
+.signin_btn {
+  background-color: #fff;
+  color: green;
+}
+
+.btn-basic {
+  display: inline-block;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1.2rem;
+}
+
+main {
+  padding: 1rem 10rem;
+}
+
+.heading {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.add_btn {
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  padding: 10px;
+  height: 4rem;
+  width: 30rem;
+}
+
+.recipe_list {
+  padding: 0;
+}
+
+.recipe_list li {
+  list-style: none;
+  margin-bottom: 2rem;
+  text-decoration: none;
+}
+
+.recipe_list li a {
+  text-decoration: none;
+  color: black;
+}
+
+.recipe_container {
+  display: flex;
+  gap: 2rem;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.recipe_name {
+  margin-bottom: 1rem;
+  width: 30%;
+  font-size: 3rem;
+  text-align: center;
+  color: black;
+}
+
+.btn {
+  font-size: 2rem;
+  background-color: transparent;
+  color: blue;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.remove_btn {
+  margin-top: 0;
+}
+
+.recipe_description {
+  font-size: 2rem;
+  width: 70%;
+}
+
+table {
+  border: 1px solid;
+  width: 100%;
+  padding: 0;
+  font-size: 2rem;
+}
+
+th {
+  background-color: grey;
+}
+
+th,
+td {
+  padding: 8px;
+}
+
+th:not(:first-child),
+td:not(:first-child) {
+  border-left: 1px solid black;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: lightgrey;
+}
+
+.user_name {
+  font-size: 2rem;
+}
+
+.food_count {
+  font-size: 3rem;
+}
+
+.total_price {
+  font-size: 3rem;
+}
+
+.container {
+  display: flex;
+}
+
+.description {
+  font-size: 2rem;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.switch {
+  font-size: 2rem;
+}
+
+.checkbox {
+  height: 20px;
+  width: 20px;
+}
+
+.public {
+  font-size: 2rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.td_buttons {
+  display: flex;
+}
+
+form {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+form input {
+  width: 20rem;
+  height: 3rem;
+}
+
+.create_recipe_btn input {
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+#recipe_public {
+  height: 20px;
+  width: 20px;
+}
+
+#recipe_description {
+  height: 10rem;
+  width: 60rem;
+}
+
+.new_recipe_food_btn input {
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+#recipe_food_recipe_id {
+  width: 10rem;
+  height: 3rem;
+}
+
+.create_food_btn input {
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.shoping_list_desc {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  gap: 2rem;
+  flex-direction: column;
+}
+
+.update_recipe_food input {
+  font-size: 2rem;
+  background-color: green;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+#user_remember_me {
+  height: 20px;
+  width: 20px;
+}
