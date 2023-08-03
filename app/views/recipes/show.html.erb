@@ -16,12 +16,14 @@
 </p>
 
 <!-- Toggle button for Public column -->
-<%= form_with(model: @recipe) do |form| %>
-  <label class="switch">
-    <%= form.label :public %>
-    <%= form.check_box :public, onchange: 'this.form.submit();' %>
-    <span class="slider round"></span>
-  </label>
+<% if can? :update, @recipe %>
+  <%= form_with(model: @recipe) do |form| %>
+    <label class="switch">
+      <%= form.label :public %>
+      <%= form.check_box :public, onchange: 'this.form.submit();' %>
+      <span class="slider round"></span>
+    </label>
+  <% end %>
 <% end %>
 
 <% if flash[:notice] %>
@@ -29,9 +31,11 @@
 <% end %>
 <div>
 <%= button_to "generate shopping list", missing_food_path, method: :get %>
-<%= form_tag(new_recipe_food_path, method: :get) do %>
-  <%= hidden_field_tag :recipe_id, @recipe.id %>
-  <%= submit_tag "Add ingredient" %>
+<% if can? :update, @recipe %>
+  <%= form_tag(new_recipe_food_path, method: :get) do %>
+    <%= hidden_field_tag :recipe_id, @recipe.id %>
+    <%= submit_tag "Add ingredient" %>
+  <% end %>
 <% end %>
 
 
@@ -44,7 +48,9 @@
         <th>Food Name</th>
         <th>Quantity</th>
         <th>Value</th>
-        <th>Action</th>
+        <% if can? :update, @recipe %>
+              <th>Actions</th>
+            <% end %>
       </tr>
     </thead>
     <tbody>
@@ -53,10 +59,12 @@
         <td><%= food.food.name %></td>
         <td><%= "#{food.quantity} #{food.food.measurement_unit}s"  %></td>
         <td><%= number_to_currency(food.quantity * food.food.price) %></td>
+        <% if can? :update, @recipe %>
         <td>
           <%= link_to "Modify", edit_recipe_food_path(food), class: "btn" %>
           <%= button_to "Delete", destroy_recipe_food_path(food), method: :delete, class: "btn" %>
         </td>
+        <% end %>
       </tr>
       <% end %>
     </tbody>
