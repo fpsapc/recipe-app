@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RecipeApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+  <nav>
+    <%= link_to image_tag('logo.png', alt: 'Logo', class: 'navbar-logo'), root_path %>
+    <ul class="navlinks">
+      <% if user_signed_in? %>
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Foods', foods_path %></li>
+        <li><%= link_to 'Public Recipes', public_recipes_path %></li>
+        <li><%= link_to 'General food list', general_food_list_user_path(current_user) %></li>
+        <li id="sign-out">
+          <%= button_to "Sign out", destroy_user_session_path, class: 'signout_btn btn-basic', :method => :delete %>
+        </li>
+      <% else %>
+        <li><%= link_to 'Sign in', new_user_session_path, class: 'signin_btn btn-basic' %></li>
+      <% end %>
+    </ul>
+  </nav>
+  <main>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </main>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<h1 class="heading">General Food List</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Total Quantity</th>
+    <th>Total Price</th>
+  </tr>
+  <% @general_food_list.each do |food| %>
+    <tr>
+      <td><%= food.name %></td>
+      <td><%= food.total_quantity %></td>
+      <td><%= food.total_price %></td>
+    </tr>
+  <% end %>
+</table>

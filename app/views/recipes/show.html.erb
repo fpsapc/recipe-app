@@ -1,0 +1,78 @@
+<h1 class="heading"><%= @recipe.name %></h1>
+
+<div class="container">
+<div class="description">
+<p>
+  <% if @recipe.preparation_time.present? %>
+    <strong>Preparation Time:</strong> <%= format_time(@recipe.preparation_time) %><br>
+  <% end %>
+</p>
+  <p>
+  <% if @recipe.cooking_time.present? %>
+    <strong>Cooking Time:</strong> <%= format_time(@recipe.cooking_time) %><br>
+  <% end %>
+</p>
+  <p>
+  <strong>Description:</strong> <%= @recipe.description %><br>
+</p>
+</div>
+<div class="toggle_btn">
+<!-- Toggle button for Public column -->
+<% if can? :update, @recipe %>
+  <%= form_with(model: @recipe) do |form| %>
+    <label class="switch">
+      <%= form.label :public %>
+      <%= form.check_box :public, onchange: 'this.form.submit();', class:"checkbox" %>
+      <span class="slider round"></span>
+    </label>
+  <% end %>
+<% end %>
+<br><strong class="public">Public:</strong> <%= @recipe.public? ? 'Yes' : 'No' %>
+</div>
+</div>
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<div class="buttons">
+<%= button_to "Generate shopping list", shopping_lists_path, method: :get, class: "add_btn" %>
+<% if can? :update, @recipe %>
+  <%= form_tag(new_recipe_food_path, method: :get) do %>
+    <%= hidden_field_tag :recipe_id, @recipe.id %>
+    <%= submit_tag "Add ingredient", class:"add_btn" %>
+  <% end %>
+<% end %>
+</div>
+
+<% if @foods.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Food Name</th>
+        <th>Quantity</th>
+        <th>Value</th>
+        <% if can? :update, @recipe %>
+              <th>Actions</th>
+            <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+        <td><%= food.food.name %></td>
+        <td><%= "#{food.quantity} #{food.food.measurement_unit}"  %></td>
+        <td><%= number_to_currency(food.quantity * food.food.price) %></td>
+        <% if can? :update, @recipe %>
+        <td class="td_buttons">
+          <%= button_to "Modify", edit_recipe_food_path(food), method: :get, class: "btn" %>
+          <%= button_to "Delete", destroy_recipe_food_path(food), method: :delete, class: "btn" %>
+        </td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No food available.</p>
+<% end %>
+
+<br><%= link_to "Back to All Recipes", recipes_path, class:"back_to_all" %>

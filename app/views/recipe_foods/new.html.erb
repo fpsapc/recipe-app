@@ -1,0 +1,31 @@
+<h1 class="heading">Create New Recipe Food</h1>
+
+<%= form_with(model: @recipe_food, class:"new_recipe_food_form", url: recipe_foods_path) do |form| %>
+  <%# Quantity field %>
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, disabled: @foods.empty? %>
+  </div>
+
+  <%# Food association %>
+  <div class="field">
+    <%= form.label :food_id %>
+    <% if @foods.present? %>
+      <%= form.select :food_id, @foods, { include_blank: '-- Select One --' }, required: true %>
+    <% else %>
+      <p>No foods available. Please add food first.</p>
+      <%= link_to "Add New Food", new_food_path %>
+    <% end %>
+  </div>
+
+  <%# Recipe association %>
+  <div class="field">
+    <%= form.label :recipe_id %>
+    <%= form.collection_select(:recipe_id, [@recipe], :id, :name, disabled: true) %>
+  </div>
+
+  <%# Submit button %>
+  <div class="actions new_recipe_food_btn">
+    <%= form.submit(disabled: @foods.empty?, data: { disable_with: 'Submitting...' }) %>
+  </div>
+<% end %>
