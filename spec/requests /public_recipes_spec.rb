@@ -5,7 +5,8 @@ RSpec.describe 'PublicRecipes', type: :request do
 
   describe 'GET /index' do
     it 'returns http success' do
-      @user = User.create(name: 'Salman', email: 'salman@gmail.com', password: '123456', password_confirmation: '123456')
+      @user = User.create(name: 'Salman', email: 'salman@gmail.com', password: '123456',
+                          password_confirmation: '123456')
 
       login_as(@user, scope: :user)
 

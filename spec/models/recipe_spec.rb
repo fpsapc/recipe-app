@@ -3,8 +3,10 @@ require 'rails_helper'
 RSpec.describe Recipe, type: :model do
   before(:each) do
     @user = User.create(name: 'Burger')
-    @recipe = Recipe.new(name: 'Pizza', description: 'Pizza, packaged in squares, served in delicious triangles',
-                         preparation_time: '10', cooking_time: '3 min', public: true, user_id: @user.id)
+    @recipe = Recipe.new(name: 'Pizza',
+                         description: 'Pizza, packaged in squares, served in delicious triangles',
+                         preparation_time: '10', cooking_time: '3 min',
+                         public: true, user_id: @user.id)
   end
 
   describe 'initialize' do
@@ -13,7 +15,9 @@ RSpec.describe Recipe, type: :model do
     end
 
     it 'should have the attributes' do
-      expect(@recipe).to have_attributes(name: 'Pizza', description: 'Pizza, packaged in squares, served in delicious triangles', preparation_time: 10,
+      expect(@recipe).to have_attributes(name: 'Pizza',
+                                         description: 'Pizza, packaged in squares, served in delicious triangles',
+                                         preparation_time: 10,
                                          cooking_time: 3, public: true, user_id: @user.id)
     end
   end
