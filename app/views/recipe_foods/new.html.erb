@@ -1,6 +1,6 @@
-<h1>Create New Recipe Food</h1>
+<h1 class="heading">Create New Recipe Food</h1>
 
-<%= form_with(model: @recipe_food, url: recipe_foods_path) do |form| %>
+<%= form_with(model: @recipe_food, class:"new_recipe_food_form", url: recipe_foods_path) do |form| %>
   <%# Quantity field %>
   <div class="field">
     <%= form.label :quantity %>
@@ -25,7 +25,7 @@
   </div>
 
   <%# Submit button %>
-  <div class="actions">
+  <div class="actions new_recipe_food_btn">
     <%= form.submit(disabled: @foods.empty?, data: { disable_with: 'Submitting...' }) %>
   </div>
 <% end %>
