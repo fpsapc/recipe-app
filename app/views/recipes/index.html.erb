@@ -1,18 +1,20 @@
-<h2>Recipe Page...</h2>
+<h2 class="heading">All Recipes...</h2>
 
 <p>
-<%= button_to "Add New Recipe", new_recipe_path, method: :get %>
+<%= button_to "Add New Recipe", new_recipe_path, method: :get, class:"add_btn" %>
 </p>
 
 <% if @recipes.any? %> 
-  <ul>
+  <ul class="recipe_list">
   <% @recipes.each do |recipe| %>
-    <li>
-    <div class="recipe-name">
+    <li class="recipe_container">
+    <div class="recipe_name">
       <%= link_to recipe.name, recipe_path(recipe) %>
-      <%= button_to "Delete", recipe_path(recipe), method: :delete, class: "btn"  %>
+      <span>
+      <%= button_to "Remove", recipe_path(recipe), method: :delete, class: "btn"  %>
+      </span>
     </div>
-    <div class="recipe-description">
+    <div class="recipe_description">
       <%= recipe.description %>
     </div>
     </li>
@@ -20,6 +22,6 @@
   </ul> 
 <% else %>
   <div>
-    <h3>You don't have any recipes saved. Create a recipe to see it here</h3>
+    <h3>😢You don't have any recipes saved. Create a recipe to see it here😪</h3>
   </div>
 <% end %>
