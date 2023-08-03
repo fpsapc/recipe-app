@@ -4,11 +4,11 @@ class RecipesController < ApplicationController
   before_action :authorize_user, only: %i[edit update destroy]
 
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(user_id: current_user.id).includes(:user)
   end
 
   def public_recipes
-    @recipes = Recipe.where(public: true)
+    @recipes = Recipe.includes(:user, recipe_foods: %i[food]).where(public: true).order(created_at: :desc)
   end
 
   def new
@@ -70,6 +70,14 @@ class RecipesController < ApplicationController
                                           SUM(recipe_foods.quantity) as total_quantity')
 
     @missing_food = build_missing_food_list
+  end
+
+  def update
+    if @recipe.update(recipe_params)
+      redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private

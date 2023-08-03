@@ -1,10 +1,11 @@
-<p>Recipe Page...</p>
+<h2>Recipe Page...</h2>
 
 <p>
 <%= button_to "Add New Recipe", new_recipe_path, method: :get %>
 </p>
 
-<ul>
+<% if @recipes.any? %> 
+  <ul>
   <% @recipes.each do |recipe| %>
     <li>
     <div class="recipe-name">
@@ -16,4 +17,9 @@
     </div>
     </li>
   <% end %>
-</ul>
+  </ul> 
+<% else %>
+  <div>
+    <h3>You don't have any recipes saved. Create a recipe to see it here</h3>
+  </div>
+<% end %>

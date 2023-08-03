@@ -3,6 +3,12 @@ class RecipeFoodsController < ApplicationController
 
   def new
     @recipe_food = RecipeFood.new
+    @foods = []
+    @recipe = Recipe.find(params[:recipe_id])
+    @ids = RecipeFood.where(recipe_id: params[:recipe_id]).pluck(:food_id)
+    Food.where(user: current_user).each do |f|
+      @foods << [f.name, f.id] unless @ids.include?(f.id)
+    end
   end
 
   def create
@@ -16,12 +22,11 @@ class RecipeFoodsController < ApplicationController
   end
 
   def edit
-    @recipe_food = RecipeFood.find(params[:id])
+    @recipe_food = RecipeFood.includes(:food).find(params[:id])
   end
 
   def update
     @recipe_food = RecipeFood.find(params[:id])
-    puts "I'm here!!!!!!!!!!!!"
     if @recipe_food.update(recipe_food_params)
       redirect_to recipe_path(@recipe_food.recipe), notice: 'Recipe Food was successfully updated.'
     else
