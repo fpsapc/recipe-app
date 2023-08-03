@@ -1,0 +1,40 @@
+<%if @recipes.empty?%>
+  <div>
+    <h1>No Shopping List. Please Add Ingredients to Recipe</h1>
+  </div>
+<%else%>
+  <div>
+      <%@recipes.each do |recipe|%>
+        <% recipe.recipe_foods.each { |recipe_food| @sum += recipe_food.quantity.to_i * recipe_food.food.price.to_i  }%>
+      <%end%>
+     <div>
+        <h1 class="heading">Shopping List</h1>
+        <span class="shoping_list_desc">
+        <%shopping_length = 0%>
+         <%@recipes.each { |recipe| shopping_length += recipe.recipe_foods.length}%>
+         <h2><%= "Amount of food items to buy: #{shopping_length}"%></h2>
+         <h2><%= "Total Value of food needed: $#{@sum}"%></h2>
+        </span>
+    </div>
+     <div>
+        <table>
+          <tr>
+            <th> Food </th>
+            <th> Quantity </th>
+            <th> Price </th>
+            
+          </tr>
+          <% @recipes.each do |recipe| %>
+             <% recipe.recipe_foods.each do |r_food| %>
+                <tr>
+                   <td><%=r_food.food.name%></td>
+                   <td><%="#{r_food.quantity} #{r_food.food.measurement_unit}"%></td>
+                   <td><%="$#{r_food.food.price.to_i * r_food.quantity.to_i}"%></td>
+               </tr>
+             <%end%>
+          <%end%>
+        </table>
+      </div>
+
+  </div>
+<%end%>
