@@ -1,5 +1,6 @@
 <p>Public Recipes </p>
 
+<% if @recipes.any? %>
 <ul>
   <% @recipes.each do |recipe| %>
     <% if recipe.public %>
@@ -23,4 +24,7 @@
     <% end %>
   <% end %>
 </ul>
+<% else %>
+  <p>No Public recipes available.</p>
+<% end %>
 
