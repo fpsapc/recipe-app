@@ -1,10 +1,14 @@
 class RecipesController < ApplicationController
-  # before_action :authenticate_user!, except: %i[index show]
-  # before_action :set_recipe, only: %i[show edit update destroy]
-  # before_action :authorize_user, only: %i[edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_recipe, only: %i[show edit update destroy]
+  before_action :authorize_user, only: %i[edit update destroy]
 
   def index
-    @recipes = Recipe.where(user_id: current_user.id).includes(:user)
+    @recipes = if current_user
+                 Recipe.where(user_id: current_user.id).includes(:user)
+               else
+                 []
+               end
   end
 
   def public_recipes
