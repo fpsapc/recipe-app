@@ -27,13 +27,25 @@
 }
 
 .signout_btn {
-  font-size: 1.2rem;
   background-color: #f00;
   color: white;
+}
+
+.signin_btn {
+  background-color: #fff;
+  color: green;
+}
+
+.btn-basic {
+  display: inline-block;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
   cursor: pointer;
-  height: 3rem;
-  padding: 0 10px;
-  border-radius: 13px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 1.2rem;
 }
 
 main {
